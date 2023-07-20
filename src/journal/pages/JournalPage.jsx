@@ -1,7 +1,13 @@
+import { FireTruck, Mail } from '@mui/icons-material'
+import { Typography } from '@mui/material'
 import React from 'react'
 
 export const JournalPage = () => {
   return (
-    <div>JournalPage </div>
+    <>
+      <Typography variant='h1'>JournalPage </Typography>
+
+    </>
+
   )
 }
