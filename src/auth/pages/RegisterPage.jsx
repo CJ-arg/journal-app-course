@@ -7,11 +7,11 @@ import { AuthLayout } from "../layout/AuthLayout";
 
 export const RegisterPage = () => {
   return (
-    <AuthLayout title="Create Count">
+    <AuthLayout title="Create Acount">
       <form>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
-            <TextField label='Name' type="text" placeholder="Carlos Janon" fullWidth></TextField>
+            <TextField label='Name' type="text" placeholder="Nombre completo" fullWidth></TextField>
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField label='correo' type="email" placeholder="correo@" fullWidth></TextField>
@@ -25,11 +25,10 @@ export const RegisterPage = () => {
             <Grid item xs={12} sm={6} sx={{ mt: 1 }}>
               <Button variant="contained" fullWidth> LOGIN</Button>
             </Grid>
-            <Grid item xs={12} sm={6} sx={{ mt: 1, mb: 2 }}>
-              <Button variant="contained" fullWidth><Google sx={{ mr: 1 }} /> <Typography sx={{ ml: 3 }}>google</Typography></Button>
-            </Grid>
+
             <Grid container direction='row' justifyContent='end' >
-              <Link component={RouterLink} color='inherit' to='/auth/register' sx={{ mt: 1 }}>Create an account</Link>
+              <Typography sx={{ mr: 1 }}>Do you have an acount?</Typography>
+              <Link component={RouterLink} color='inherit' to='/auth/login' sx={{ mt: 1 }}>Login</Link>
             </Grid>
           </Grid>
         </Grid>
