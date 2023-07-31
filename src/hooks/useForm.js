@@ -29,6 +29,7 @@ export const useForm = (rootForm = {}, formValidations = {}) => {
   const onResetForm = () => {
     setFormState(rootForm);
   };
+
   const createValidators = () => {
     const formCheckValues = {};
     for (const formField of Object.keys(formValidations)) {

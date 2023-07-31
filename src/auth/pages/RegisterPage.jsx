@@ -5,7 +5,6 @@ import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
 
 const formData = {
-
   email: '',
   password: '',
   displayName: ''
@@ -19,15 +18,13 @@ export const RegisterPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { formState, displayName, email, password, isFormValid, displayNameValid, emailValid, passwordValid, onInputChange, } = useForm(formData, formValidations)
 
-
   const onSubmit = (event) => {
     event.preventDefault()
     setFormSubmitted(true);
-
   }
+
   return (
     <AuthLayout title="Create Acount">
-      <h1>FormValid {isFormValid ? "is  Valid" : 'no valid op'}</h1>
       <form onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -45,7 +42,6 @@ export const RegisterPage = () => {
             <Grid item xs={12} sm={6} sx={{ mt: 1 }}>
               <Button type="submit" variant="contained" fullWidth> Create Account</Button>
             </Grid>
-
             <Grid container direction='row' justifyContent='end' >
               <Typography sx={{ mr: 1 }}>Do you have an acount?</Typography>
               <Link component={RouterLink} color='inherit' to='/auth/login' >Login</Link>
