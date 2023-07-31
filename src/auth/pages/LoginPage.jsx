@@ -1,20 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Google } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
-import React from "react"
+import React, { useMemo } from "react"
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks";
 import { checkingAuthentication, startGoogleSignIn } from "../../store/auth";
 
 
 export const LoginPage = () => {
+  const { status } = useSelector(state => state.auth);
+
   const dispatch = useDispatch()
   const { email, password, onInputChange } = useForm({
     email: 'pepguardiola@google.com',
     password: '123456'
   })
-
+  const isAuthenticating = useMemo(() => status === 'checking', [status])
   const onSubmit = (event) => {
     event.preventDefault();
     console.log()
@@ -38,8 +40,6 @@ export const LoginPage = () => {
               onChange={onInputChange}
               value={email}
             >
-
-
             </TextField>
           </Grid>
         </Grid>
@@ -56,10 +56,10 @@ export const LoginPage = () => {
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }} >
             <Grid item xs={12} sm={6} sx={{ mt: 1 }}>
-              <Button type="submit" variant="contained" fullWidth> LOGIN</Button>
+              <Button disabled={isAuthenticating} type="submit" variant="contained" fullWidth> LOGIN</Button>
             </Grid>
             <Grid item xs={12} sm={6} sx={{ mt: 1, mb: 2 }}>
-              <Button variant="contained" fullWidth onClick={onGoogleSingIn}><Google sx={{ mr: 1 }} /> <Typography sx={{ ml: 3 }}>google</Typography></Button>
+              <Button disabled={isAuthenticating} variant="contained" fullWidth onClick={onGoogleSingIn}><Google sx={{ mr: 1 }} /> <Typography sx={{ ml: 3 }}>google</Typography></Button>
             </Grid>
             <Grid container direction='row' justifyContent='end' >
               <Link component={RouterLink} color='inherit' to='/auth/register' sx={{ mt: 1 }}>Create an account</Link>
