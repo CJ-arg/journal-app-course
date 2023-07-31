@@ -9,6 +9,7 @@ export const checkingAuthentication = (email, password) => {
 export const startGoogleSignIn = () => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
-    const result = signInWhithGoogle();
+    const result = await signInWhithGoogle();
+    console.log({ result });
   };
 };
