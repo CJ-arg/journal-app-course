@@ -19,7 +19,6 @@ export const signInWhithGoogle = async () => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-
     return {
       ok: false,
       errorCode,
