@@ -9,11 +9,13 @@ const formData = {
   password: '',
   displayName: ''
 }
+
 const formValidations = {
   email: [(value) => value.includes('@'), 'the email must have an @'],
   password: [(value) => value.length >= 6, 'the password must have more than 6 ch'],
   displayName: [(value) => value.length >= 1, 'Name is required']
 }
+
 export const RegisterPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { formState, displayName, email, password, isFormValid, displayNameValid, emailValid, passwordValid, onInputChange, } = useForm(formData, formValidations)
