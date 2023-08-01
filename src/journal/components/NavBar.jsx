@@ -1,6 +1,5 @@
 import { LoginOutlined, MenuOutlined } from '@mui/icons-material'
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material'
-import React from 'react'
 
 export const NavBar = ({ drawerWidth = 240 }) => {
   return (
