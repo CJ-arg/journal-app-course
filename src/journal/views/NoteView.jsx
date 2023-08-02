@@ -1,15 +1,11 @@
 import { SaveOutlined } from '@mui/icons-material'
 import { Button, Grid, TextField, Typography } from '@mui/material'
-import React from 'react'
 
 export const NoteView = () => {
   return (
-
     <Grid container direction='row' justifyContent='space-between' sx={{ mb: 1 }}>
-
       <Grid>
         <Typography fontSize={39} fontWeight='light'> 28 de diciembre, 2023</Typography>
-
       </Grid>
       <Grid item>
         <Button color='primary' sx={{ padding: 2 }}>
@@ -33,7 +29,6 @@ export const NoteView = () => {
             minRows={5}
           />
         </Grid>
-
       </Grid>
     </Grid>
   )
