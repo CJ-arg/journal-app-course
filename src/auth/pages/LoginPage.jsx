@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
+import { useForm } from '../../hooks';
 import { Google } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import React, { useMemo } from "react"
@@ -7,18 +8,22 @@ import { AuthLayout } from "../layout/AuthLayout";
 import { checkingAuthentication, startGoogleSignIn } from "../../store/auth";
 
 export const LoginPage = () => {
+  const formData = {
+    email: '',
+    password: ''
+  }
   const { status } = useSelector(state => state.auth);
   const dispatch = useDispatch()
+  const { email, password, onInputChange } = useForm(formData);
   const isAuthenticating = useMemo(() => status === 'checking', [status])
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log()
     dispatch(checkingAuthentication())
   }
   const onGoogleSingIn = () => {
-    console.log('onGoogleSingIn');
     dispatch(startGoogleSignIn())
   }
+
   return (
     <AuthLayout title="Login">
       <form onSubmit={onSubmit}>
