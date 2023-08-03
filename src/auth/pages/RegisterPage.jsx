@@ -1,8 +1,10 @@
 import { Link as RouterLink } from "react-router-dom";
-import { Button, Grid, Link, TextField, Typography } from "@mui/material"
+import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hooks/useForm";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { startCreatingUserWithEmailPassword } from "../../store/auth";
 
 const formData = {
   email: '',
@@ -19,17 +21,20 @@ const formValidations = {
 export const RegisterPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { formState, displayName, email, password, isFormValid, displayNameValid, emailValid, passwordValid, onInputChange, } = useForm(formData, formValidations)
+  const dispatch = useDispatch()
+  const { status, errorMessage } = useSelector(state => state.auth);
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
 
   const onSubmit = (event) => {
     event.preventDefault()
     setFormSubmitted(true);
     if (!isFormValid) return;
-
+    dispatch(startCreatingUserWithEmailPassword(formState))
   }
 
   return (
     <AuthLayout title="Create Acount">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField label='Name' type="text" placeholder="Nombre completo" name="displayName" value={displayName} onChange={onInputChange} error={!!displayNameValid && formSubmitted} helperText={displayNameValid} fullWidth></TextField>
@@ -43,8 +48,22 @@ export const RegisterPage = () => {
             <TextField label='password' type="password" placeholder="password*" name="password" value={password} onChange={onInputChange} error={!!passwordValid && formSubmitted} helperText={passwordValid} fullWidth></TextField>
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }} >
-            <Grid item xs={12} sm={6} sx={{ mt: 1 }}>
-              <Button type="submit" variant="contained" fullWidth> Create Account</Button>
+            <Grid
+              item
+              xs={12}
+              display={!!errorMessage ? '' : 'none'}
+            >
+              <Alert severity='error'>{errorMessage}</Alert>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                disabled={isCheckingAuthentication}
+                type="submit"
+                variant='contained'
+                fullWidth>
+                Crear cuenta
+              </Button>
             </Grid>
             <Grid container direction='row' justifyContent='end' >
               <Typography sx={{ mr: 1 }}>Do you have an acount?</Typography>
