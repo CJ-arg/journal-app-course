@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { Google } from '@mui/icons-material';
-
 import { AuthLayout } from '../layout/AuthLayout';
-
 import { useForm } from '../../hooks';
 import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth';
 
@@ -14,20 +12,14 @@ const formData = {
   password: ''
 }
 
-
 export const LoginPage = () => {
 
   const { status, errorMessage } = useSelector(state => state.auth);
-
   const dispatch = useDispatch();
   const { email, password, onInputChange } = useForm(formData);
-
   const isAuthenticating = useMemo(() => status === 'checking', [status]);
-
   const onSubmit = (event) => {
     event.preventDefault();
-
-    // console.log({ email, password })
     dispatch(startLoginWithEmailPassword({ email, password }));
   }
 
@@ -35,7 +27,6 @@ export const LoginPage = () => {
     console.log('onGoogleSignIn');
     dispatch(startGoogleSignIn());
   }
-
 
   return (
     <AuthLayout title="Login">
@@ -52,7 +43,6 @@ export const LoginPage = () => {
               onChange={onInputChange}
             />
           </Grid>
-
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
               label="Contraseña"
@@ -64,8 +54,6 @@ export const LoginPage = () => {
               onChange={onInputChange}
             />
           </Grid>
-
-
           <Grid
             container
             display={!!errorMessage ? '' : 'none'}
@@ -99,19 +87,13 @@ export const LoginPage = () => {
               </Button>
             </Grid>
           </Grid>
-
-
           <Grid container direction='row' justifyContent='end'>
             <Link component={RouterLink} color='inherit' to="/auth/register">
               Crear una cuenta
             </Link>
           </Grid>
-
         </Grid>
-
-
       </form>
-
     </AuthLayout>
   )
 }
