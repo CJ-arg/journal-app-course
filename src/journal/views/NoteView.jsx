@@ -5,6 +5,7 @@ export const NoteView = () => {
   return (
     <Grid
       className='animate__animated animate__fadeIn animate__faster'
+
       container direction='row' justifyContent='space-between' sx={{ mb: 1 }}>
       <Grid>
         <Typography fontSize={39} fontWeight='light'> 28 de diciembre, 2023</Typography>
