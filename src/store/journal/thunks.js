@@ -15,6 +15,7 @@ import {
   setSaving,
   updateNote,
 } from "./journalSlice";
+import { loadNotes } from "../../helpers";
 // import { fileUpload, loadNotes } from "../../helpers";
 
 export const startNewNote = () => {
@@ -48,9 +49,9 @@ export const startLoadingNotes = () => {
     const { uid } = getState().auth;
     if (!uid) throw new Error("El UID del usuario no existe");
 
-    // const notes = await loadNotes(uid);
-    console.log(uid);
-    // dispatch(setNotes(notes));
+    const notes = await loadNotes(uid);
+
+    dispatch(setNotes(notes));
   };
 };
 
