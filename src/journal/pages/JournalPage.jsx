@@ -7,11 +7,10 @@ import { ImageGallery, NoteView, NothingSelectedView } from '../views'
 export const JournalPage = () => {
   return (
     <JournalLayout>
-      {/* <Typography> Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, deleniti repellat, deserunt repellendus quisquam sint nulla magni veniam autem ex expedita quae non quis. Sunt doloremque provident pariatur tempora rerum!</Typography> */}
-      {/* <NothingSelectedView /> */}
-      {/* <ImageGallery /> */}
-      <NoteView />
-      <IconButton size='large'
+      <NothingSelectedView />
+      {/* <NoteView /> */}
+      <IconButton
+        size='large'
         sx={{
           color: 'white',
           backgroundColor: 'error.main',
@@ -19,10 +18,9 @@ export const JournalPage = () => {
           position: 'fixed',
           right: 50,
           bottom: 50
-        }}>
-
+        }}
+      >
         <AddOutlined sx={{ fontSize: 30 }} />
-
       </IconButton>
     </JournalLayout>
 
