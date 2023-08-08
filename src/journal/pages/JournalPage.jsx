@@ -3,13 +3,20 @@ import { Button, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import { JournalLayout } from '../layout/JournalLayout'
 import { ImageGallery, NoteView, NothingSelectedView } from '../views'
+import { startNewNote } from '../../store/journal'
+import { useDispatch } from 'react-redux'
 
 export const JournalPage = () => {
+  const dispatch = useDispatch()
+  const onClickNewNote = () => {
+    dispatch(startNewNote())
+  }
   return (
     <JournalLayout>
       <NothingSelectedView />
       {/* <NoteView /> */}
       <IconButton
+        onClick={onClickNewNote}
         size='large'
         sx={{
           color: 'white',
