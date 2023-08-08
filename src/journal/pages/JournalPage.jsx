@@ -4,19 +4,23 @@ import React from 'react'
 import { JournalLayout } from '../layout/JournalLayout'
 import { ImageGallery, NoteView, NothingSelectedView } from '../views'
 import { startNewNote } from '../../store/journal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const JournalPage = () => {
+  const { isSaving, active } = useSelector(state => state.journal)
   const dispatch = useDispatch()
   const onClickNewNote = () => {
     dispatch(startNewNote())
   }
   return (
     <JournalLayout>
-      <NothingSelectedView />
-      {/* <NoteView /> */}
+
+      {(!!active) ? <NoteView /> : <NothingSelectedView />}
+
+
       <IconButton
         onClick={onClickNewNote}
+        disabled={isSaving}
         size='large'
         sx={{
           color: 'white',
