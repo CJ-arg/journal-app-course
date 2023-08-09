@@ -28,7 +28,6 @@ export const startNewNote = () => {
       body: "",
       date: new Date().getTime(),
     };
-
     const doc = await addDoc(
       collection(FirebaseDb, `${uid}`, "journal/notes"),
       {
@@ -36,9 +35,7 @@ export const startNewNote = () => {
       }
     );
     console.log("Document written with ID: ", doc);
-
     newNote.id = doc.id;
-
     dispatch(addNewEmptyNote(newNote));
     dispatch(setActiveNote(newNote));
   };
@@ -48,9 +45,7 @@ export const startLoadingNotes = () => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
     if (!uid) throw new Error("El UID del usuario no existe");
-
     const notes = await loadNotes(uid);
-
     dispatch(setNotes(notes));
   };
 };
@@ -58,14 +53,11 @@ export const startLoadingNotes = () => {
 export const startSaveNote = () => {
   return async (dispatch, getState) => {
     dispatch(setSaving());
-
     const { uid } = getState().auth;
     const { active: note } = getState().journal;
-
     const noteToFireStore = { ...note };
     delete noteToFireStore.id;
-
-    const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
+    const docRef = doc(FirebaseDb, `${uid}/journal/notes/${note.id}`);
     await setDoc(docRef, noteToFireStore, { merge: true });
 
     dispatch(updateNote(note));

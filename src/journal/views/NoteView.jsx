@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DeleteOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 // import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.css';
+// import 'sweetalert2/dist/sweetalert2.css';
 
 import { useForm } from '../../hooks/useForm';
-import { ImageGallery } from '../components'
+// import { ImageGallery } from '../components'
 import { setActiveNote } from '../../store/journal';
 // import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '../../store/journal';
 
@@ -42,7 +42,7 @@ export const NoteView = () => {
     if (target.files === 0) return;
     dispatch(startUploadingFiles(target.files));
   }
-t onDelete = () => {
+  onDelete = () => {
     dispatch(startDeletingNote());
   }
 
