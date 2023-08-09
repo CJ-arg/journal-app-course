@@ -4,7 +4,7 @@ import {
   singInWithGoogle,
   logoutFirebase,
 } from "../../firebase/providers";
-// import { clearNotesLogout } from "../journal";
+import { clearNotesLogout } from "../journal";
 import { checkingCredentials, logout, login } from "./";
 
 export const checkingAuthentication = () => {
@@ -37,7 +37,8 @@ export const startCreatingUserWithEmailPassword = ({
       password,
       displayName,
     });
-    if (!result.ok) return dispatch(logout(result));
+    if (!result.ok) return dispatch(logout(result.errorMessage));
+
     dispatch(login(result));
   };
 };
@@ -47,6 +48,7 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
     dispatch(checkingCredentials());
 
     const result = await loginWithEmailPassword({ email, password });
+    console.log(result);
 
     if (!result.ok) return dispatch(logout(result));
     dispatch(login(result));
@@ -56,7 +58,7 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
 export const startLogout = () => {
   return async (dispatch) => {
     await logoutFirebase();
-    // dispatch(clearNotesLogout());
-    dispatch(logout({}));
+    dispatch(clearNotesLogout());
+    dispatch(logout());
   };
 };
