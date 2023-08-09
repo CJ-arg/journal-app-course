@@ -5,8 +5,7 @@ import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import { useForm } from '../../hooks/useForm';
-// import { ImageGallery } from '../components'
-// import { setActiveNote } from '../../store/journal';
+import { ImageGallery } from '../components'
 import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '../../store/journal';
 
 export const NoteView = () => {
@@ -124,7 +123,7 @@ export const NoteView = () => {
 
 
       {/* Image gallery */}
-      {/* <ImageGallery images={note.imageUrls} /> */}
+      <ImageGallery images={note.imageUrls} />
 
     </Grid>
   )

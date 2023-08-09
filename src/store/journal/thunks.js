@@ -16,6 +16,7 @@ import {
   updateNote,
 } from "./journalSlice";
 import { loadNotes } from "../../helpers";
+import { fileUpload } from "../../helpers/fileUpload";
 // import { fileUpload, loadNotes } from "../../helpers";
 
 export const startNewNote = () => {
@@ -66,7 +67,6 @@ export const startSaveNote = () => {
 export const startUploadingFiles = (files = []) => {
   return async (dispatch) => {
     dispatch(setSaving());
-
     // await fileUpload( files[0] );
     const fileUploadPromises = [];
     for (const file of files) {
