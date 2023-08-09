@@ -120,9 +120,6 @@ export const NoteView = () => {
           Borrar
         </Button>
       </Grid>
-
-
-      {/* Image gallery */}
       <ImageGallery images={note.imageUrls} />
 
     </Grid>
