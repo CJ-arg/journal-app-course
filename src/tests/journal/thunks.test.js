@@ -1,5 +1,5 @@
 import { collection, deleteDoc, getDocs } from "firebase/firestore/lite";
-import { FirebaseDB } from "../../../src/firebase/config";
+import { FirebaseDb } from "../../../src/firebase/config";
 import {
   savingNewNote,
   addNewEmptyNote,
@@ -37,8 +37,7 @@ describe("Pruebas en Journal Thunks", () => {
       })
     );
 
-    // Borrar de firebase
-    const collectionRef = collection(FirebaseDB, `${uid}/journal/notes`);
+    const collectionRef = collection(FirebaseDb, `${uid}/journal/notes`);
     const docs = await getDocs(collectionRef);
 
     const deletePromises = [];
